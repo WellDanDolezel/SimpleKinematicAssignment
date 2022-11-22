@@ -4,7 +4,7 @@ a = 0.1;
 b = 0.2;
 fi_0 = pi/6;
 t = linspace(0, 1, 101);
-omega = 1;
+omega = - 1;
 init_estim = [0; 0];
 tol = 1e-6;
 
@@ -26,12 +26,12 @@ end
 theta = x(1,:);
 d = x(2,:);
 
-figure(1), set(gcf,'color','w','Position',[200 200 600 250]);
+figure(1), set(gcf,'color','w','Position',[200 200 600 175]);
 colororder({'b','r'})
 yyaxis left
 plot(t, theta, 'LineWidth', 2)
 grid on, grid minor
-xlabel ('t [s]')
+xlabel ('t [s]','Interpreter','latex')
 ylabel ('${\theta}$ [rad]','Interpreter','latex')
 
 yyaxis right
@@ -60,12 +60,12 @@ theta_dot = x(1,:);
 d_dot = x(2,:);
 
 
-figure(2), set(gcf,'color','w','Position',[200 200 600 250]);
+figure(2), set(gcf,'color','w','Position',[200 200 600 175]);
 colororder({'b','r'})
 yyaxis left
 plot(t, theta_dot, 'LineWidth', 2)
 grid on, grid minor
-xlabel ('t [s]')
+xlabel ('t [s]','Interpreter','latex')
 ylabel ('$\dot{\theta}$ [rad/s]','Interpreter','latex')
 
 yyaxis right
