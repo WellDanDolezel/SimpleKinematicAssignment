@@ -7,6 +7,7 @@ t = linspace(0, 1, 101);
 omega = - 1;
 init_estim = [0; 0];
 tol = 1e-6;
+res = zeros (2, length(tol));
 
 %% Solving positions
 for ii = 1:length(t)
@@ -18,13 +19,13 @@ for ii = 1:length(t)
     J_pos = @(x) [- b*sin(x(1)), -1;
                   - b*cos(x(1)), 0];
 
-    [x(:,ii),n] = NR_function(F_pos, J_pos, init_estim, tol);
-    init_estim = x(:,ii);
+    [res(:,ii), n] = NR_function(F_pos, J_pos, init_estim, tol);
+    init_estim = res(:,ii);
 end
 
 
-theta = x(1,:);
-d = x(2,:);
+theta = res(1,:);
+d = res(2,:);
 
 figure(1), set(gcf,'color','w','Position',[200 200 600 175]);
 colororder({'b','r'})
@@ -52,12 +53,12 @@ for ii = 1:length(t)
     J_vel = @(x) [- b*sin(theta(ii)), -1;
                   - b*cos(theta(ii)), 0];
 
-    [x(:,ii),n] = NR_function(F_vel, J_vel, init_estim, tol);
-    init_estim = x(:,ii);
+    [res(:,ii),n] = NR_function(F_vel, J_vel, init_estim, tol);
+    init_estim = res(:,ii);
 end
 
-theta_dot = x(1,:);
-d_dot = x(2,:);
+theta_dot = res(1,:);
+d_dot = res(2,:);
 
 
 figure(2), set(gcf,'color','w','Position',[200 200 600 175]);
